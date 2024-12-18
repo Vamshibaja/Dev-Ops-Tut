@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QR Code Generator</title>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+    <style>
+      #qrcode-container {
+        display: inline-block;
+        position: relative;
+        cursor: pointer;
+      }
+
+      /* Optional styling for hover effect */
+      #qrcode-container:hover {
+        opacity: 0.8;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>QR Code Generator</h1>
+    <div id="qrcode-container" title=""></div>
+
+    <script>
+      // Data to encode in the QR code
+      const data = "Hello, this is a QR code with sample data!";
+
+      // Reference to the container div
+      const qrCodeContainer = document.getElementById("qrcode-container");
+
+      // Set the title attribute to show details on hover
+      qrCodeContainer.setAttribute("title", data);
+
+      // Generate the QR code
+      QRCode.toCanvas(
+        data,
+        { width: 200, margin: 1 },
+        function (error, canvas) {
+          if (error) {
+            console.error("Error generating QR Code:", error);
+            return;
+          }
+          // Append the QR code canvas to the container
+          qrCodeContainer.appendChild(canvas);
+        }
+      );
+    </script>
+  </body>
+</html>
